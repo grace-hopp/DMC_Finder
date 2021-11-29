@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="img">Select image:</label>
+        <input type="file" id="img" name="imgfile" accept="image/*">
+        How many colors?
+        <input type="number" id="num" name="amt">
+        <input type="submit">
+      </form>
+    <h1>Your Colors:</h1>
+    <p>
+        <table>
+            <tr>
+                <td>
+                    DMC
+                </td>
+                <td style='width: 50px;'>
+                    HEX
+                </td>
+                <td style='width: 50px;'>
+                    RGB
+                </td>
+            </tr>
+            {% for color in dominant_colors %}
+            <tr>
+                <td>
+                    {{ color.dmc_code }}
+                </td>
+                <td style='width: 50px; background-color: #{{ color.hex_code }};'>
+                </td>
+                <td style='width: 50px; background-color: RGB({{ color.rgb_red }}, {{ color.rgb_green }}, {{ color.rgb_blue }});'>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+            
+    </p>
+      
+    <h1>Colors:</h1>
+    <p>
+        <table>
+            <tr>
+                <td>
+                    DMC
+                </td>
+                <td style='width: 50px;'>
+                    HEX
+                </td>
+                <td style='width: 50px;'>
+                    RGB
+                </td>
+            </tr>
+            {% for color in colors %}
+            <tr>
+                <td>
+                    {{ color.dmc_code }}
+                </td>
+                <td style='width: 50px; background-color: #{{ color.hex_code }};'>
+                </td>
+                <td style='width: 50px; background-color: RGB({{ color.rgb_red }}, {{ color.rgb_green }}, {{ color.rgb_blue }});'>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+            
+    </p>
+</body>
+
+</html>
